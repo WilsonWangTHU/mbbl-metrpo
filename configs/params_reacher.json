@@ -1,0 +1,62 @@
+{
+  "env_name": "reacher",
+  "random_seeds": [3214,2431,2531,2231],
+  "save_variables": false,
+  "model_save_dir": "/tmp/reacher_models/",
+  "restore_variables": false,
+  "start_onpol_iter": 0,
+  "onpol_iters": 200,
+  "num_path_random": 100,
+  "num_path_onpol": 100,
+  "env_horizon": 50,
+  "max_train_data": 200000,
+  "max_val_data": 100000,
+  "discard_ratio": 0.0,
+  "dynamics":{
+    "pre_training": {
+      "mode": "intrinsic_reward",
+      "itr": 0,
+      "policy_itr": 20
+    },
+    "model": "nn",
+    "ensemble": true,
+    "ensemble_model_count": 5,
+    "enable_particle_ensemble": true,
+    "particles": 5,
+    "obs_var": 1.0,
+    "intrinsic_reward_coeff": 1.0,
+    "ita": 1.0,
+    "mode": "random",
+    "val": true,
+    "n_layers": 4,
+    "hidden_size": 1000,
+    "activation": "relu",
+    "batch_size": 1000,
+    "learning_rate": 1e-3,
+    "reg_coeff": 0.0,
+    "epochs": 200,
+    "kfac_params":{
+      "learning_rate": 1e-1,
+      "damping": 1e-3,
+      "momentum": 0.9,
+      "kl_clip": 1e-4,
+      "cov_ema_decay": 0.99
+    }
+  },
+  "policy":{
+    "network_shape": [64, 64],
+    "init_logstd": 0.0,
+    "activation": "tanh",
+    "reinitialize_every_itr": false
+  },
+  "trpo":{
+    "horizon": 50,
+    "gamma": 0.99,
+    "step_size": 0.01,
+    "iterations": 20,
+    "batch_size": 25000,
+    "gae": 0.95,
+    "visualization": false,
+    "visualize_iterations": [0]
+  }
+}

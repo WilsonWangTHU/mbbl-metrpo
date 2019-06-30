@@ -1,0 +1,69 @@
+{
+  "env_name": "swimmer",
+  "random_seeds": [2312,1231,2631,5543],
+  "save_variables": false,
+  "model_save_dir": "/tmp/swimmer_models/",
+  "restore_variables": false,
+  "start_onpol_iter": 0,
+  "onpol_iters": 167,
+  "num_path_random": 6,
+  "num_path_onpol": 6,
+  "env_horizon": 1000,
+  "max_train_data": 20000,
+  "max_val_data": 10000,
+  "discard_ratio": 0.0,
+  "dynamics":{
+    "pre_training": {
+      "mode": "intrinsic_reward",
+      "itr": 0,
+      "policy_itr": 20
+    },
+    "model": "nn",
+    "ensemble": true,
+    "ensemble_model_count": 5,
+    "enable_particle_ensemble": true,
+    "particles": 5,
+    "intrinsic_reward_only": false,
+    "external_reward_evaluation_interval": 5,
+    "obs_var": 1.0,
+    "intrinsic_reward_coeff": 1.0,
+    "ita": 1.0,
+    "mode": "random",
+    "val": true,
+    "n_layers": 4,
+    "hidden_size": 1000,
+    "activation": "relu",
+    "batch_size": 1000,
+    "learning_rate": 1e-3,
+    "epochs": 200,
+    "kfac_params":{
+      "learning_rate": 1e-1,
+      "damping": 1e-3,
+      "momentum": 0.9,
+      "kl_clip": 1e-4,
+      "cov_ema_decay": 0.99
+    }
+  },
+  "policy":{
+    "network_shape": [32, 32],
+    "init_logstd": 0.0,
+    "activation": "tanh",
+    "reinitialize_every_itr": false
+  },
+  "trpo":{
+    "horizon": 200,
+    "gamma": 0.99,
+    "step_size": 0.01,
+    "iterations": TRPO_ITERATION,
+    "batch_size": 50000,
+    "gae": 0.95
+  },
+  "trpo_ext_reward": {
+    "horizon": 1000,
+    "gamma": 0.99,
+    "step_size": 0.01,
+    "iterations": 20,
+    "batch_size": 50000,
+    "gae": 0.95
+  }
+}
